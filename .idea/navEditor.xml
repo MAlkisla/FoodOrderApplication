@@ -8,13 +8,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="basketFragment">
+                  <entry key="cartFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="262" />
-                            <option name="y" value="180" />
+                            <option name="x" value="260" />
+                            <option name="y" value="199" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -43,12 +43,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_homepageFragment_to_basketFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_homepageFragment_to_foodDetailFragment">
+                            <entry key="actionDetail">
                               <value>
                                 <LayoutPositions />
                               </value>

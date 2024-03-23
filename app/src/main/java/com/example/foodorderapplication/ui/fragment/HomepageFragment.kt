@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.foodorderapplication.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodorderapplication.data.entity.Foods
-import com.example.foodorderapplication.databinding.FragmentBasketBinding
 import com.example.foodorderapplication.databinding.FragmentHomepageBinding
 import com.example.foodorderapplication.ui.adapter.FoodsAdapter
+import com.example.foodorderapplication.ui.viewmodel.HomepageViewModel
 
 class HomepageFragment : Fragment() {
     private lateinit var binding: FragmentHomepageBinding
+    private lateinit var viewModel: HomepageViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +29,7 @@ class HomepageFragment : Fragment() {
 
         val foodsAdapter = FoodsAdapter(requireContext(),foodsList)
         binding.foodsRv.adapter = foodsAdapter
-        binding.foodsRv.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        binding.foodsRv.layoutManager = GridLayoutManager(context, 2)
 
         /*binding.buttonDetay.setOnClickListener {
             val amountString = binding.editTextYemekSayisi.text.toString()
@@ -72,5 +72,11 @@ class HomepageFragment : Fragment() {
 
     fun search(searchWord: String) {
         Log.e("Yemek Ara",searchWord)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: HomepageViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }

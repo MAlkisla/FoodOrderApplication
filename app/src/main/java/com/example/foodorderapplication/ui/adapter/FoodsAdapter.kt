@@ -38,48 +38,12 @@ class FoodsAdapter(var mContext: Context, var foodsList: List<Foods>) : Recycler
         design.textViewFoodPrice.text = food.food_price.toString()
 
         design.cardView.setOnClickListener {
-            val amountString = design.textViewAmountText.text.toString()
-            val amount = amountString.toIntOrNull() ?: 1
-
-            val action = HomepageFragmentDirections.actionDetail(food = food, amount = amount)
+            val action = HomepageFragmentDirections.actionDetail(food = food)
             Navigation.findNavController(it).navigate(action)
-        }
-
-        design.cardButtonDeactive.setOnClickListener {
-            design.cardButtonDeactive.visibility = View.INVISIBLE
-            design.cardButtonActive.visibility = View.VISIBLE
-            //TODO: Sepete eklencek ve sepette ise active kalacak
-        }
-        design.imageViewIncreaseButton.setOnClickListener {
-            val amountString = design.textViewAmountText.text.toString()
-            val currentAmount = amountString.toIntOrNull() ?: 1
-            val newAmount = currentAmount + 1
-            design.textViewAmountText.text = newAmount.toString()
-        }
-
-        design.imageViewReduceButton.setOnClickListener {
-            val amountString = design.textViewAmountText.text.toString()
-            val currentAmount = amountString.toIntOrNull() ?: 1
-            val newAmount = currentAmount - 1
-            design.textViewAmountText.text = newAmount.toString()
-            if (newAmount <= 0) {
-                Snackbar.make(
-                    it, "${food.food_name} sepetten kaldırıldı", Snackbar
-                        .LENGTH_SHORT
-                ).show()
-                remove(food.food_id)
-                design.textViewAmountText.text = "1"
-                design.cardButtonDeactive.visibility = View.VISIBLE
-                design.cardButtonActive.visibility = View.INVISIBLE
-            }
         }
     }
 
     override fun getItemCount(): Int {
         return foodsList.size
-    }
-
-    fun remove(food_id: Int) {
-        Log.e("Yemek Kaldır", food_id.toString())
     }
 }

@@ -14,14 +14,9 @@
             android:id="@+id/actionDetail"
             app:destination="@id/foodDetailFragment" />
         <action
-            android:id="@+id/actionBasket"
-            app:destination="@id/basketFragment" />
+            android:id="@+id/actionCart"
+            app:destination="@id/cartFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/basketFragment"
-        android:name="com.example.foodorderapplication.ui.fragment.BasketFragment"
-        android:label="fragment_basket"
-        tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/foodDetailFragment"
         android:name="com.example.foodorderapplication.ui.fragment.FoodDetailFragment"
@@ -30,8 +25,10 @@
         <argument
             android:name="food"
             app:argType="com.example.foodorderapplication.data.entity.Foods" />
-        <argument
-            android:name="amount"
-            app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.foodorderapplication.ui.fragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
