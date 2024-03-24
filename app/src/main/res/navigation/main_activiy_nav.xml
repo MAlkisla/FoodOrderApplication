@@ -25,10 +25,16 @@
         <argument
             android:name="food"
             app:argType="com.example.foodorderapplication.data.entity.Foods" />
+        <action
+            android:id="@+id/actionCartFoods"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.foodorderapplication.ui.fragment.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <argument android:name="cartFoods"
+            app:argType="com.example.foodorderapplication.data.entity.CartFoods" />
+    </fragment>
 </navigation>

@@ -23,22 +23,54 @@ class FoodDetailFragment : Fragment() {
         val bundle: FoodDetailFragmentArgs by navArgs()
         val inboundFood = bundle.food
 
-        binding.imageViewIncrease.setOnClickListener {
+        binding.textViewFoodName.text = inboundFood.food_name
+
+        binding.imageViewFoodImage.setImageResource(
+            requireContext().resources.getIdentifier(
+                inboundFood.food_image_name, "drawable", requireContext().packageName
+            )
+        )
+
+        binding.textViewFoodPrice.text = inboundFood.food_price.toString()
+
+        binding.textViewAmount.text = "1"
+        binding.textViewTotalPrice.text = "${1 * inboundFood.food_price}"
+
+        binding.buttonAddCart.setOnClickListener {
             val amountString = binding.textViewAmount.text.toString()
             val amount = amountString.toIntOrNull() ?: 1
+            viewModel.addCart(inboundFood.food_name, inboundFood.food_image_name,
+                inboundFood.food_price,amount,"Meric")
+        }
+        binding.imageViewIncrease.setOnClickListener {
+            val amountString = binding.textViewAmount.text.toString()
+            val currentAmount = amountString.toIntOrNull() ?: 1
+            val newAmount = currentAmount + 1
+            binding.textViewAmount.text = newAmount.toString()
+            viewModel.update(inboundFood.food_id,newAmount)
+            binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
+        }
 
-            update(amount,inboundFood.food_id,inboundFood.food_name,inboundFood.food_image_name,
-                inboundFood.food_price)
-
-            binding.textViewTotalPrice.text = "${amount * inboundFood.food_price}"
+        binding.imageViewReduce.setOnClickListener {
+            val amountString = binding.textViewAmount.text.toString()
+            val currentAmount = amountString.toIntOrNull() ?: 1
+            var newAmount = currentAmount - 1
+            binding.textViewAmount.text = newAmount.toString()
+            if (newAmount <= 0) {
+                binding.textViewAmount.text = "1"
+                viewModel.update(inboundFood.food_id,1)
+                binding.textViewTotalPrice.text = "${1 * inboundFood.food_price}"
+            }
+            else {
+                viewModel.update(inboundFood.food_id,newAmount)
+                binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
+            }
         }
 
         return binding.root
     }
 
-    fun update(amount:Int, food_id:Int, food_name:String, food_image_name:String, food_price:Int){
-        Log.e("Sepetteki Bu Yemeği Güncelle", "${amount} x ${food_name} - ${food_price * amount}")
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
