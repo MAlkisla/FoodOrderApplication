@@ -12,7 +12,9 @@ import com.example.foodorderapplication.data.entity.CartFoods
 import com.example.foodorderapplication.databinding.FragmentCartBinding
 import com.example.foodorderapplication.ui.adapter.CartFoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel

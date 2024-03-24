@@ -15,7 +15,9 @@ import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.FragmentHomepageBinding
 import com.example.foodorderapplication.ui.adapter.FoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.HomepageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomepageFragment : Fragment() {
     private lateinit var binding: FragmentHomepageBinding
     private lateinit var viewModel: HomepageViewModel

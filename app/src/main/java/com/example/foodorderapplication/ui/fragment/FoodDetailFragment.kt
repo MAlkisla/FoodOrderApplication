@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.foodorderapplication.databinding.FragmentFoodDetailBinding
 import com.example.foodorderapplication.ui.viewmodel.FoodDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private lateinit var viewModel: FoodDetailViewModel

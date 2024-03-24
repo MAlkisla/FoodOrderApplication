@@ -3,8 +3,7 @@ package com.example.foodorderapplication.data.repo
 import com.example.foodorderapplication.data.datasource.CartFoodsDataSource
 import com.example.foodorderapplication.data.datasource.FoodsDataSource
 
-class CartFoodsRepository {
-    var cfds = CartFoodsDataSource()
+class CartFoodsRepository(var cfds: CartFoodsDataSource) {
 
     suspend fun addCart(food_name: String,
                         food_image_name: String,
