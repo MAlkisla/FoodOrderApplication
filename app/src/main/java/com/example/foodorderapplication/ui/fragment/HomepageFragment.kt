@@ -1,7 +1,6 @@
 package com.example.foodorderapplication.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodorderapplication.R
-import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.FragmentHomepageBinding
 import com.example.foodorderapplication.ui.adapter.FoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.HomepageViewModel

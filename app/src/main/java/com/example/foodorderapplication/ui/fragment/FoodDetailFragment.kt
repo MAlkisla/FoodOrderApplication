@@ -1,7 +1,6 @@
 package com.example.foodorderapplication.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.FragmentFoodDetailBinding
-import com.example.foodorderapplication.databinding.HomepageCardDesignBinding
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import com.example.foodorderapplication.ui.viewmodel.FoodDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +40,7 @@ class FoodDetailFragment : Fragment() {
             val amountString = binding.textViewAmount.text.toString()
             val amount = amountString.toIntOrNull() ?: 1
             viewModel.addCart(
-                inboundFood.food_name, inboundFood.food_image_name,
+            inboundFood.food_name, inboundFood.food_image_name,
                 inboundFood.food_price, amount, "Meric"
             )
         }

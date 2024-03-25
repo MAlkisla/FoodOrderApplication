@@ -1,7 +1,6 @@
 package com.example.foodorderapplication.data.repo
 
 import com.example.foodorderapplication.data.datasource.CartFoodsDataSource
-import com.example.foodorderapplication.data.entity.CartFoods
 
 class CartFoodsRepository(var cfds: CartFoodsDataSource) {
 

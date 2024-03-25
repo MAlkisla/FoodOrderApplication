@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodorderapplication.data.entity.CartFoods
 import com.example.foodorderapplication.databinding.FragmentCartBinding
 import com.example.foodorderapplication.ui.adapter.CartFoodsAdapter
-import com.example.foodorderapplication.ui.adapter.FoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

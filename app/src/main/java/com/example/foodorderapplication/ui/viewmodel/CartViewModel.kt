@@ -38,7 +38,6 @@ class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewMod
         }
     }
 
-
     fun calculateTotalOrderPrice() {
         val totalPrice = cartFoodsList.value?.sumOf { it.food_price * it.food_order_amount } ?: 0
         totalOrderPrice.value = totalPrice

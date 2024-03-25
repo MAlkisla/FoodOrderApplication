@@ -10,3 +10,4 @@ data class CartFoods(@SerializedName("sepet_yemek_id") var cart_food_id: Int,
                      @SerializedName("yemek_siparis_adet") var food_order_amount: Int,
                      @SerializedName("kullanici_adi") var nickname: String) : Serializable {
 }
+

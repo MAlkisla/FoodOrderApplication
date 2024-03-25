@@ -1,15 +1,12 @@
 package com.example.foodorderapplication.ui.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodorderapplication.data.entity.CartFoods
-import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.CartCardDesignBinding
-import com.example.foodorderapplication.databinding.HomepageCardDesignBinding
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import com.google.android.material.snackbar.Snackbar
 

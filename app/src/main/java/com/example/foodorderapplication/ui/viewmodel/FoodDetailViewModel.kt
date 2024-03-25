@@ -1,10 +1,7 @@
 package com.example.foodorderapplication.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.foodorderapplication.data.entity.CartFoods
 import com.example.foodorderapplication.data.repo.CartFoodsRepository
-import com.example.foodorderapplication.data.repo.FoodsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,5 +19,4 @@ class FoodDetailViewModel @Inject constructor(var cfrepo: CartFoodsRepository): 
             cfrepo.addCart(food_name, food_image_name, food_price,food_order_amount,nickname)
         }
     }
-
 }
