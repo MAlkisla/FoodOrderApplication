@@ -30,6 +30,7 @@ interface FoodsDao {
                         @Field("yemek_fiyat") food_price: Int,
                         @Field("yemek_siparis_adet") food_order_amount: Int,
                         @Field("kullanici_adi") nickname: String): CRUDResponse
-    @GET("yemekler/sepettekiYemekleriGetir.php")
+    @POST("yemekler/sepettekiYemekleriGetir.php")
+    @FormUrlEncoded
     suspend fun cartFoodsLoad(@Field("kullanici_adi") nickname: String): CartFoodsResponse
 }

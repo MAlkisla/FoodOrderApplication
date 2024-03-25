@@ -1,10 +1,17 @@
 package com.example.foodorderapplication.data.datasource
 
 import android.util.Log
+import com.example.foodorderapplication.data.entity.CartFoods
+import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.retrofit.FoodsDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CartFoodsDataSource(var fdao: FoodsDao) {
 
+    suspend fun cartFoodsLoad(nickname: String) : List<CartFoods>? = withContext(Dispatchers.IO){
+        return@withContext fdao.cartFoodsLoad(nickname).cart
+    }
     suspend fun addCart(food_name: String,
                         food_image_name: String,
                         food_price: Int,

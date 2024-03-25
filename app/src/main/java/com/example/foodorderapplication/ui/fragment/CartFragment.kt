@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodorderapplication.data.entity.CartFoods
 import com.example.foodorderapplication.databinding.FragmentCartBinding
 import com.example.foodorderapplication.ui.adapter.CartFoodsAdapter
+import com.example.foodorderapplication.ui.adapter.FoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,12 +25,12 @@ class CartFragment : Fragment() {
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        val cartFoodsList = ArrayList<CartFoods>()
-        val c1 = CartFoods(1,"Ayran","ayran",123,2,"Meric")
-        cartFoodsList.add(c1)
 
-        val cartFoodsAdapter = CartFoodsAdapter(requireContext(),cartFoodsList,viewModel)
-        binding.cartFoodsRv.adapter = cartFoodsAdapter
+        viewModel.cartFoodsList.observe(viewLifecycleOwner){
+            val cartFoodsAdapter = CartFoodsAdapter(requireContext(),it,viewModel)
+            binding.cartFoodsRv.adapter = cartFoodsAdapter
+        }
+
         binding.cartFoodsRv.layoutManager = LinearLayoutManager(requireContext())
         return binding.root
     }

@@ -5,6 +5,7 @@ import com.example.foodorderapplication.data.datasource.FoodsDataSource
 
 class CartFoodsRepository(var cfds: CartFoodsDataSource) {
 
+    suspend fun carFoodsLoad(nickname: String) = cfds.cartFoodsLoad(nickname)
     suspend fun addCart(food_name: String,
                         food_image_name: String,
                         food_price: Int,

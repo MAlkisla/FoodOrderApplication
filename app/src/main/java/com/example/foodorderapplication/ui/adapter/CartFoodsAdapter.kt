@@ -5,8 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.foodorderapplication.data.entity.CartFoods
+import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.CartCardDesignBinding
+import com.example.foodorderapplication.databinding.HomepageCardDesignBinding
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -28,11 +31,7 @@ class CartFoodsAdapter (var mContext: Context, var cartFoodsList: List<CartFoods
 
         design.textViewFoodName.text = cartFoods.food_name
 
-        design.imageViewFoodImage.setImageResource(
-            mContext.resources.getIdentifier(
-                cartFoods.food_image_name, "drawable", mContext.packageName
-            )
-        )
+        showImage(cartFoods,design)
 
         design.textViewFoodPrice.text = cartFoods.food_price.toString()
 
@@ -48,5 +47,10 @@ class CartFoodsAdapter (var mContext: Context, var cartFoodsList: List<CartFoods
 
     override fun getItemCount(): Int {
         return cartFoodsList.size
+    }
+
+    fun showImage(food: CartFoods, desing: CartCardDesignBinding){
+        val url="http://kasimadalan.pe.hu/yemekler/resimler/${food.food_image_name}"
+        Glide.with(mContext).load(url).override(120,120).into(desing.imageViewFoodImage)
     }
 }
