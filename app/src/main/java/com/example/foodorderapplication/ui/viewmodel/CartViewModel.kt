@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(var frepo: FoodsRepository, var cfrepo: CartFoodsRepository):ViewModel(){
-    fun remove(cart_food_id:Int){
+    fun remove(cart_food_id:Int,nickname: String){
         CoroutineScope(Dispatchers.Main).launch {
-            cfrepo.remove(cart_food_id)
+            cfrepo.remove(cart_food_id,nickname)
             frepo.foodsLoad()
         }
     }

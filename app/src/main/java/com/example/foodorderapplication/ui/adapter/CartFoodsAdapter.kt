@@ -40,7 +40,7 @@ class CartFoodsAdapter (var mContext: Context, var cartFoodsList: List<CartFoods
         design.imageViewRemove.setOnClickListener {
             Snackbar.make(it,"${cartFoods.food_name} sepetten kaldırılsın mı?", Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){
-                    viewModel.remove(cartFoods.cart_food_id)
+                    viewModel.remove(cartFoods.cart_food_id,cartFoods.nickname)
                 }.show()
         }
 

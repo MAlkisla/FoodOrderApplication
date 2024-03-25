@@ -11,8 +11,8 @@ class CartFoodsRepository(var cfds: CartFoodsDataSource) {
                         food_order_amount: Int,
                         nickname: String) = cfds.addCart( food_name, food_image_name, food_price,food_order_amount,nickname)
 
-    suspend fun update(cart_food_id:Int,
+    /*suspend fun update(cart_food_id:Int,
                        food_order_amount: Int) = cfds.update(cart_food_id, food_order_amount)
-
-    suspend fun remove(cart_food_id: Int) = cfds.remove(cart_food_id)
+*/
+    suspend fun remove(cart_food_id: Int,nickname: String) = cfds.remove(cart_food_id,nickname)
 }

@@ -4,6 +4,8 @@ import com.example.foodorderapplication.data.datasource.CartFoodsDataSource
 import com.example.foodorderapplication.data.datasource.FoodsDataSource
 import com.example.foodorderapplication.data.repo.CartFoodsRepository
 import com.example.foodorderapplication.data.repo.FoodsRepository
+import com.example.foodorderapplication.retrofit.ApiUtils
+import com.example.foodorderapplication.retrofit.FoodsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,8 +23,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideFoodsDataSource(): FoodsDataSource{
-        return FoodsDataSource()
+    fun provideFoodsDataSource(fdao: FoodsDao): FoodsDataSource{
+        return FoodsDataSource(fdao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFoodsDao(): FoodsDao {
+        return ApiUtils.getFoodsDao()
     }
 
     @Provides
@@ -33,7 +41,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCartFoodsDataSource(): CartFoodsDataSource{
-        return CartFoodsDataSource()
+    fun provideCartFoodsDataSource(fdao: FoodsDao): CartFoodsDataSource{
+        return CartFoodsDataSource(fdao)
     }
 }

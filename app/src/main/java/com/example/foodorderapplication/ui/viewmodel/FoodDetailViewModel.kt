@@ -22,12 +22,12 @@ class FoodDetailViewModel @Inject constructor(var cfrepo: CartFoodsRepository): 
         }
     }
 
-    fun update(cart_food_id:Int,
+    /*fun update(cart_food_id:Int,
                food_order_amount: Int){
         CoroutineScope(Dispatchers.Main).launch {
             cfrepo.update(cart_food_id, food_order_amount)
         }
-    }
+    }*/
 
 
 }
