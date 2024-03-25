@@ -32,7 +32,7 @@ class FoodsAdapter(var mContext: Context, var foodsList: List<Foods>) : Recycler
 
         showImage(food,design)
 
-        design.textViewFoodPrice.text = food.food_price.toString()
+        design.textViewFoodPrice.text = food.food_price.toString() + " ₺"
 
         design.cardView.setOnClickListener {
             val action = HomepageFragmentDirections.actionDetail(food = food)

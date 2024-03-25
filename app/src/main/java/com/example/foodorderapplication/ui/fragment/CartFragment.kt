@@ -31,6 +31,10 @@ class CartFragment : Fragment() {
             binding.cartFoodsRv.adapter = cartFoodsAdapter
         }
 
+        viewModel.totalOrderPrice.observe(viewLifecycleOwner) {
+            binding.textViewOrderTotalPrice.text = it.toString()
+        }
+
         binding.cartFoodsRv.layoutManager = LinearLayoutManager(requireContext())
         return binding.root
     }

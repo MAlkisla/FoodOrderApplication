@@ -36,6 +36,8 @@ class CartFoodsAdapter (var mContext: Context, var cartFoodsList: List<CartFoods
         design.textViewFoodPrice.text = cartFoods.food_price.toString()
 
         design.textViewAmount.text = cartFoods.food_order_amount.toString()
+        design.textViewTotalPrice.text = "${cartFoods.food_order_amount * cartFoods.food_price}"
+
         design.imageViewRemove.setOnClickListener {
             Snackbar.make(it,"${cartFoods.food_name} sepetten kaldırılsın mı?", Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){

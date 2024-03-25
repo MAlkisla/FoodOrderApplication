@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.FragmentFoodDetailBinding
 import com.example.foodorderapplication.databinding.HomepageCardDesignBinding
+import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import com.example.foodorderapplication.ui.viewmodel.FoodDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,16 +41,18 @@ class FoodDetailFragment : Fragment() {
         binding.buttonAddCart.setOnClickListener {
             val amountString = binding.textViewAmount.text.toString()
             val amount = amountString.toIntOrNull() ?: 1
-            viewModel.addCart(inboundFood.food_name, inboundFood.food_image_name,
-                inboundFood.food_price,amount,"Meric")
+            viewModel.addCart(
+                inboundFood.food_name, inboundFood.food_image_name,
+                inboundFood.food_price, amount, "Meric"
+            )
         }
         binding.imageViewIncrease.setOnClickListener {
             val amountString = binding.textViewAmount.text.toString()
             val currentAmount = amountString.toIntOrNull() ?: 1
             val newAmount = currentAmount + 1
             binding.textViewAmount.text = newAmount.toString()
-            //viewModel.update(inboundFood.food_id,newAmount)
             binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
+
         }
 
         binding.imageViewReduce.setOnClickListener {
@@ -59,11 +62,8 @@ class FoodDetailFragment : Fragment() {
             binding.textViewAmount.text = newAmount.toString()
             if (newAmount <= 0) {
                 binding.textViewAmount.text = "1"
-                //viewModel.update(inboundFood.food_id,1)
                 binding.textViewTotalPrice.text = "${1 * inboundFood.food_price}"
-            }
-            else {
-                //viewModel.update(inboundFood.food_id,newAmount)
+            } else {
                 binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
             }
         }
@@ -72,15 +72,14 @@ class FoodDetailFragment : Fragment() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel: FoodDetailViewModel by viewModels()
         viewModel = tempViewModel
     }
 
-    fun showImage(food: Foods){
-        val url="http://kasimadalan.pe.hu/yemekler/resimler/${food.food_image_name}"
-        Glide.with(this).load(url).override(500,500).into(binding.imageViewFoodImage)
+    fun showImage(food: Foods) {
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.food_image_name}"
+        Glide.with(this).load(url).override(500, 500).into(binding.imageViewFoodImage)
     }
 }

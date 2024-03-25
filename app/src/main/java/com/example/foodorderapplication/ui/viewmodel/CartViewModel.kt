@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodorderapplication.data.entity.CartFoods
 import com.example.foodorderapplication.data.repo.CartFoodsRepository
-import com.example.foodorderapplication.data.repo.FoodsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,16 +15,19 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewModel(){
     var cartFoodsList= MutableLiveData<List<CartFoods>>()
     var nickname = "Meric"
+    var totalOrderPrice = MutableLiveData<Int>()
     init {
         cartFoodsLoad()
     }
     fun cartFoodsLoad(){
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                cartFoodsList.value = cfrepo.carFoodsLoad(nickname)
+                cartFoodsList.value = cfrepo.cartFoodsLoad(nickname)
+                calculateTotalOrderPrice()
             } catch (e: Exception) {
                 Log.e("Hata", "Bu kullanıcı adına ait bir sepet bulunamadı.")
                 cartFoodsList.value = emptyList()
+                calculateTotalOrderPrice()
             }
         }
     }
@@ -34,5 +36,11 @@ class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewMod
             cfrepo.remove(cart_food_id,nickname)
             cartFoodsLoad()
         }
+    }
+
+
+    fun calculateTotalOrderPrice() {
+        val totalPrice = cartFoodsList.value?.sumOf { it.food_price * it.food_order_amount } ?: 0
+        totalOrderPrice.value = totalPrice
     }
 }
