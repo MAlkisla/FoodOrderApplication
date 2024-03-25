@@ -13,20 +13,25 @@ import javax.inject.Inject
 @HiltViewModel
 
 class HomepageViewModel @Inject constructor(var frepo: FoodsRepository): ViewModel() {
-    var foodsList= MutableLiveData<List<Foods>>()
+    var originalFoodsList = MutableLiveData<List<Foods>>()
+    var foodsList = MutableLiveData<List<Foods>>()
 
     init {
         foodsLoad()
     }
     fun foodsLoad(){
         CoroutineScope(Dispatchers.Main).launch {
-            foodsList.value = frepo.foodsLoad()
+            originalFoodsList.value = frepo.foodsLoad()
+            foodsList.value = originalFoodsList.value
         }
     }
 
-    fun search(searchWord: String) {
-        CoroutineScope(Dispatchers.Main).launch{
-            foodsList.value = frepo.search(searchWord)
+    fun search(query: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val filteredList = originalFoodsList.value?.filter { food ->
+                food.food_name.contains(query, ignoreCase = true)
+            }
+            foodsList.value = filteredList!!
         }
     }
 }

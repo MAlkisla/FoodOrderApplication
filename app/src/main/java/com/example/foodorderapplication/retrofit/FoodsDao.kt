@@ -15,9 +15,6 @@ interface FoodsDao {
     @GET("yemekler/tumYemekleriGetir.php")
     suspend fun foodsLoad(): FoodsResponse
 
-    @POST("yemekler/tumYemekleriGetir.php")
-    @FormUrlEncoded
-    suspend fun search(@Field("yemek_adi") aramaKelimesi: String): FoodsResponse
     @POST("yemekler/sepettenYemekSil.php")
     @FormUrlEncoded
     suspend fun remove(@Field("sepet_yemek_id") cart_food_id: Int,
