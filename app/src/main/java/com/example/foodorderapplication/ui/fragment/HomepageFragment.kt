@@ -32,11 +32,10 @@ class HomepageFragment : Fragment() {
         }
 
         binding.foodsRv.layoutManager = GridLayoutManager(context, 2)
-
-
-        binding.imageViewCart.setOnClickListener {
+        
+        /*binding.imageViewCart.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.actionCart)
-        }
+        }*/
 
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {

@@ -30,10 +30,10 @@ class CartFoodsAdapter (var mContext: Context, var cartFoodsList: List<CartFoods
 
         showImage(cartFoods,design)
 
-        design.textViewFoodPrice.text = cartFoods.food_price.toString() + " ₺"
+        design.textViewFoodPrice.text = "₺"+ cartFoods.food_price.toString()
 
-        design.textViewAmount.text = cartFoods.food_order_amount.toString() +" Adet "
-        design.textViewTotalPrice.text = "${cartFoods.food_order_amount * cartFoods.food_price} ₺"
+        design.textViewAmount.text = cartFoods.food_order_amount.toString() +" Adet"
+        design.textViewTotalPrice.text = "₺${cartFoods.food_order_amount * cartFoods.food_price}"
 
         design.imageViewRemove.setOnClickListener {
             Snackbar.make(it,"${cartFoods.food_name} sepetten kaldırılsın mı?", Snackbar.LENGTH_SHORT)

@@ -28,6 +28,9 @@
         <action
             android:id="@+id/actionCartFoods"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/actionDetailToHomepage"
+            app:destination="@id/homepageFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -36,5 +39,8 @@
         tools:layout="@layout/fragment_cart" >
         <argument android:name="cartFoods"
             app:argType="com.example.foodorderapplication.data.entity.CartFoods" />
+        <action
+            android:id="@+id/actionCartToHomepage"
+            app:destination="@id/homepageFragment" />
     </fragment>
 </navigation>

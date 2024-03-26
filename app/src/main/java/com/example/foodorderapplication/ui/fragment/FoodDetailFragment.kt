@@ -6,18 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.foodorderapplication.R
 import com.example.foodorderapplication.data.entity.Foods
+import com.example.foodorderapplication.databinding.ActivityMainBinding
 import com.example.foodorderapplication.databinding.FragmentFoodDetailBinding
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
 import com.example.foodorderapplication.ui.viewmodel.FoodDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private lateinit var viewModel: FoodDetailViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +36,10 @@ class FoodDetailFragment : Fragment() {
 
         showImage(inboundFood)
 
-        binding.textViewFoodPrice.text = inboundFood.food_price.toString() + " ₺"
+        binding.textViewFoodPrice.text = "₺"+inboundFood.food_price.toString() + ".00"
 
         binding.textViewAmount.text = "1"
-        binding.textViewTotalPrice.text = "${1 * inboundFood.food_price} ₺"
+        binding.textViewTotalPrice.text = "₺${1 * inboundFood.food_price}.00"
 
         binding.buttonAddCart.setOnClickListener {
             val amountString = binding.textViewAmount.text.toString()
@@ -49,7 +54,7 @@ class FoodDetailFragment : Fragment() {
             val currentAmount = amountString.toIntOrNull() ?: 1
             val newAmount = currentAmount + 1
             binding.textViewAmount.text = newAmount.toString()
-            binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price} ₺"
+            binding.textViewTotalPrice.text = "₺${newAmount * inboundFood.food_price}.00"
 
         }
 
@@ -60,12 +65,16 @@ class FoodDetailFragment : Fragment() {
             binding.textViewAmount.text = newAmount.toString()
             if (newAmount <= 0) {
                 binding.textViewAmount.text = "1"
-                binding.textViewTotalPrice.text = "${1 * inboundFood.food_price} ₺"
+                binding.textViewTotalPrice.text = "₺${1 * inboundFood.food_price}.00"
             } else {
-                binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price} ₺"
+                binding.textViewTotalPrice.text = "₺${newAmount * inboundFood.food_price}.00"
             }
         }
 
+        binding.ratingBar2.rating = Random.nextInt(2, 5).toFloat()
+        binding.buttonReturnHomepage.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.actionDetailToHomepage)
+        }
         return binding.root
     }
 

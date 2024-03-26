@@ -15,7 +15,7 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewModel(){
     var cartFoodsList= MutableLiveData<List<CartFoods>>()
     var nickname = "Meric"
-    var totalOrderPrice = MutableLiveData<Int>()
+    var subTotalOrderPrice = MutableLiveData<Int>()
     init {
         cartFoodsLoad()
     }
@@ -39,7 +39,7 @@ class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewMod
     }
 
     fun calculateTotalOrderPrice() {
-        val totalPrice = cartFoodsList.value?.sumOf { it.food_price * it.food_order_amount } ?: 0
-        totalOrderPrice.value = totalPrice
+        val subPrice = cartFoodsList.value?.sumOf { it.food_price * it.food_order_amount } ?: 0
+        subTotalOrderPrice.value = subPrice
     }
 }

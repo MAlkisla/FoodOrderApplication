@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodorderapplication.R
+import com.example.foodorderapplication.databinding.ActivityMainBinding
 import com.example.foodorderapplication.databinding.FragmentCartBinding
 import com.example.foodorderapplication.ui.adapter.CartFoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
@@ -22,17 +25,29 @@ class CartFragment : Fragment() {
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-
         viewModel.cartFoodsList.observe(viewLifecycleOwner){
             val cartFoodsAdapter = CartFoodsAdapter(requireContext(),it,viewModel)
             binding.cartFoodsRv.adapter = cartFoodsAdapter
         }
-
-        viewModel.totalOrderPrice.observe(viewLifecycleOwner) {
-            binding.textViewOrderTotalPrice.text = it.toString()
+        viewModel.subTotalOrderPrice.observe(viewLifecycleOwner) {
+            var totalPrice = 0
+            if (it > 0){
+                binding.textViewDeliveryCharge.text = "₺50"
+                totalPrice = it + 50
+            }
+            else{
+                binding.textViewDeliveryCharge.text = "₺0"
+                totalPrice = it
+            }
+            binding.textViewSubTotalPrice.text = "₺"+it.toString()
+            binding.textViewTotalPrice.text = "₺"+totalPrice.toString()
         }
 
         binding.cartFoodsRv.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.imageViewReturnHomePage.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.actionCartToHomepage)
+        }
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {
