@@ -31,10 +31,10 @@ class FoodDetailFragment : Fragment() {
 
         showImage(inboundFood)
 
-        binding.textViewFoodPrice.text = inboundFood.food_price.toString()
+        binding.textViewFoodPrice.text = inboundFood.food_price.toString() + " ₺"
 
         binding.textViewAmount.text = "1"
-        binding.textViewTotalPrice.text = "${1 * inboundFood.food_price}"
+        binding.textViewTotalPrice.text = "${1 * inboundFood.food_price} ₺"
 
         binding.buttonAddCart.setOnClickListener {
             val amountString = binding.textViewAmount.text.toString()
@@ -49,7 +49,7 @@ class FoodDetailFragment : Fragment() {
             val currentAmount = amountString.toIntOrNull() ?: 1
             val newAmount = currentAmount + 1
             binding.textViewAmount.text = newAmount.toString()
-            binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
+            binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price} ₺"
 
         }
 
@@ -60,9 +60,9 @@ class FoodDetailFragment : Fragment() {
             binding.textViewAmount.text = newAmount.toString()
             if (newAmount <= 0) {
                 binding.textViewAmount.text = "1"
-                binding.textViewTotalPrice.text = "${1 * inboundFood.food_price}"
+                binding.textViewTotalPrice.text = "${1 * inboundFood.food_price} ₺"
             } else {
-                binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price}"
+                binding.textViewTotalPrice.text = "${newAmount * inboundFood.food_price} ₺"
             }
         }
 

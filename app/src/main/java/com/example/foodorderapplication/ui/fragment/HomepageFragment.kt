@@ -37,6 +37,7 @@ class HomepageFragment : Fragment() {
         binding.imageViewCart.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.actionCart)
         }
+
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.search(query)

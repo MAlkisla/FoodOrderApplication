@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.foodorderapplication.R
 import com.example.foodorderapplication.data.entity.Foods
 import com.example.foodorderapplication.databinding.HomepageCardDesignBinding
 import com.example.foodorderapplication.ui.fragment.HomepageFragmentDirections
@@ -36,7 +37,8 @@ class FoodsAdapter(var mContext: Context, var foodsList: List<Foods>) : Recycler
 
         design.cardView.setOnClickListener {
             val action = HomepageFragmentDirections.actionDetail(food = food)
-            Navigation.findNavController(it).navigate(action)
+            val navController = Navigation.findNavController(it)
+            navController.navigate(action)
         }
     }
 
