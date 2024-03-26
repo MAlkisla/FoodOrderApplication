@@ -42,4 +42,23 @@ class CartViewModel @Inject constructor(var cfrepo: CartFoodsRepository):ViewMod
         val subPrice = cartFoodsList.value?.sumOf { it.food_price * it.food_order_amount } ?: 0
         subTotalOrderPrice.value = subPrice
     }
+
+    fun removeAllCartFoods(nickname: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val cartFoods = cfrepo.cartFoodsLoad(nickname)
+
+                cartFoods?.forEach { item ->
+                    cfrepo.remove(item.cart_food_id, nickname)
+                }
+
+                cartFoodsLoad()
+
+                calculateTotalOrderPrice()
+            } catch (e: Exception) {
+
+                Log.e("Hata", "Sepet temizlenirken bir hata oluştu: ${e.message}")
+            }
+        }
+    }
 }

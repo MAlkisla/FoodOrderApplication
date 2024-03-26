@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.cartFragment)
                     true
                 }
+                R.id.orderFragment -> {
+                    navController.navigate(R.id.orderFragment)
+                    true
+                }
                 else -> false
             }
         }

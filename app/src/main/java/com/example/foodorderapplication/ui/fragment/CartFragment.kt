@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodorderapplication.R
-import com.example.foodorderapplication.databinding.ActivityMainBinding
 import com.example.foodorderapplication.databinding.FragmentCartBinding
 import com.example.foodorderapplication.ui.adapter.CartFoodsAdapter
 import com.example.foodorderapplication.ui.viewmodel.CartViewModel
@@ -47,6 +46,10 @@ class CartFragment : Fragment() {
 
         binding.imageViewReturnHomePage.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.actionCartToHomepage)
+        }
+        binding.buttonCartApply.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.actionCartToOrder)
+            viewModel.removeAllCartFoods("Meric")
         }
         return binding.root
     }

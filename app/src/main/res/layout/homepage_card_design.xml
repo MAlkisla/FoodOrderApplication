@@ -60,6 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/spinnaker"
                 android:text="3 TL"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
